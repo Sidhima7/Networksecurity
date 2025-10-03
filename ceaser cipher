@@ -1,0 +1,24 @@
+    result = ""
+    for char in text:
+        if char.isalpha():
+            if char.isupper():
+                base = 65
+            else:
+                base = 97
+
+            if mode == "encrypt":
+                result += chr((ord(char) - base + shift) % 26 + base)
+            elif mode == "decrypt":
+                result += chr((ord(char) - base - shift) % 26 + base)
+        else:
+            result += char
+    return result
+
+
+# Main program
+text = input("Enter message: ")
+shift = int(input("Enter shift: "))
+mode = input("Do you want to encrypt or decrypt? ").lower()
+
+result = caesar_cipher(text, shift, mode)
+print(f"{mode.capitalize()}ed Text:", result)
